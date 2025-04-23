@@ -3,7 +3,6 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const contractRoutes = require("./routes/contracts.routes");
-const businessLinesRoutes = require("./routes/businessLines.routes");
 const activityRoutes = require("./routes/activities.routes");
 const activityFormsRoutes = require("./routes/activity.routes");
 
@@ -20,7 +19,6 @@ app.use(express.json());
 
 // Rutas
 app.use("/api/contracts", contractRoutes);
-app.use("/api/business-lines", businessLinesRoutes);
 app.use("/api/activities", activityRoutes);
 app.use("/api/activities", activityFormsRoutes);
 
