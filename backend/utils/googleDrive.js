@@ -2,7 +2,15 @@ const fs = require("fs");
 const { google } = require("googleapis");
 const path = require("path");
 
-const KEYFILEPATH = path.join(__dirname, "../config/credentials.json");
+const { google } = require("googleapis");
+
+const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS_JSON);
+const SCOPES = ["https://www.googleapis.com/auth/drive"];
+
+const auth = new google.auth.GoogleAuth({
+  credentials,
+  scopes: SCOPES,
+});
 const SCOPES = ["https://www.googleapis.com/auth/drive"];
 
 const auth = new google.auth.GoogleAuth({
