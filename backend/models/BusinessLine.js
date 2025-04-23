@@ -7,6 +7,7 @@ const businessLineSchema = new mongoose.Schema({
     unique: true,
     trim: true,
   },
+  driveFolderId: { type: String }, // <-- esta línea es clave
   fechaCreacion: {
     type: Date,
     default: Date.now,

@@ -1,12 +1,22 @@
 const express = require("express");
 const router = express.Router();
 const BusinessLine = require("../models/BusinessLine");
+const { createFolder } = require("../utils/googleDrive");
 
 // Crear línea de negocio
 router.post("/", async (req, res) => {
   try {
     const { nombre } = req.body;
-    const nuevaLinea = new BusinessLine({ nombre });
+
+    // Crear carpeta principal en Drive
+    const carpetaDrive = await createFolder(nombre);
+
+    // Guardar en MongoDB
+    const nuevaLinea = new BusinessLine({
+      nombre,
+      driveFolderId: carpetaDrive,
+    });
+
     await nuevaLinea.save();
     res.status(201).json(nuevaLinea);
   } catch (error) {
